@@ -1,4 +1,4 @@
-![CrystalCoach](./_design/_assets/logo_concept_1_bg.png)
+<img src="./_design/_assets/logo_concept_1_bg.png" alt="CrystalCoach" style="width: 100px;"/>
 
 #CrystalCoach
 ###Health recommendations for everyone.
