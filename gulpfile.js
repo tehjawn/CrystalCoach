@@ -6,12 +6,15 @@ var server = require('./server.js')
 var chimp = require('gulp-chimp')
 var typescript = require('gulp-tsc')
 
+var server_config
+
 gulp.task('default', function() {
 	console.log("Running Gulp in testing environment...")
-	runServer({
+	server_config = {
 		port: 8000,
 		env: "test"
-	})
+	}
+	runServer()
 })
 
 gulp.task('help', function() {
@@ -47,7 +50,7 @@ function runServer(config) {
 	// If a server already exists within this runtime, destroy it and create a new one
 	// Otherwise, proceed with creating a new server
 
-	singletonServer(config)
+	singletonServer(server_config)
 
 	// Watches public folder and restarts Express server on change
 	console.log("Watching ~/public/**...")
@@ -56,8 +59,8 @@ function runServer(config) {
 
 function autoReload() {
 	gulp.watch(['public/**'], function() {
-		buildTypescript()
-		singletonServer(config)
+		buildAll()
+		singletonServer(server_config)
 		console.log("Detected change! Reloading server...")
 	})
 }
