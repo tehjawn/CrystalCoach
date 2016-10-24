@@ -7,10 +7,13 @@ module.exports.destroy = destroyServer
 
 // Server Libraries
 var express = require('express')
+var session = require('express-session')
+var bodyParser = require('body-parser')
 var api = require('./server/api')
 // console.log(api.routes.users.getAll)
 
 var app = express()
+app.use(bodyParser.json())
 var app_server
 
 // Import server configuration files
@@ -59,14 +62,57 @@ function destroyServer() {
 
 // Firebase
 var firebase = require('firebase')
-firebase.initializeApp({
+var FirebaseStore = require('connect-session-firebase')(session)
+
+var firebase_app = firebase.initializeApp({
 	serviceAccount: config.firebase.key,
 	databaseURL: config.firebase.databaseURL
 })
 
+app.use(session({
+	store: new FirebaseStore({
+		database: firebase_app.database()
+	}),
+	secret: config.firebase.secret,
+	resave: true,
+	saveUninitialized: true
+}))
 
-var db = firebase.database()
-var ref = db.ref('/test')
-ref.on('value', function(snapshot) {
-	console.log(snapshot.val())
-})
+// Firebase Test Watcher
+	var db = firebase_app.database()
+	var ref = db.ref('/test')
+	ref.on('value', function(snapshot) {
+		console.log(snapshot.val())
+	})
+
+// Test Routes
+// app.get('/', function(req, res) {
+// 	firebase_app.auth().onAuthStateChanged(function(user) {
+// 		if (user) {
+// 			res.end("good auth")
+// 			console.log(user.email)
+// 		} else {
+// 			res.end("bad auth")
+// 		}
+// 	})
+// })
+
+// app.post('/signin', function(req, res) {
+// 	var username = req.body.username
+// 	var password = req.body.password
+
+// 	firebase_app.auth().signInWithEmailAndPassword(username, password).catch(function(error) {
+// 		console.log(error)
+// 	})
+
+// 	function preSignin() {
+// 		console.log("preSignin...")
+// 	}
+
+// 	function postSignin() {
+// 		console.log("postSignin!")
+// 	}
+
+// 	preSignin()
+// 	setTimeout(postSignin, 2500)
+// })

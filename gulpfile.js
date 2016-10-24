@@ -2,8 +2,10 @@
 // Stores various tasks to be automated by Gulp task runner
 
 var gulp = require('gulp')
-var app_server = require('./server.js')
 var chimp = require('gulp-chimp')
+var run = require('gulp-run')
+
+var app_server = require('./server.js')
 var typescript = require('gulp-tsc')
 
 var server_config
@@ -20,6 +22,8 @@ gulp.task('default', function() {
 gulp.task('help', function() {
 	console.log("Available gulp tasks:")
 	console.log("--> gulp\t\t:\tServes application in testing environment")
+	console.log("--> gulp build:ts\t:\tCompiles Typescript files to JS")
+	console.log("--> gulp build:sass\t:\tCompiles Sass files to CSS")
 	console.log("--> gulp test:client\t:\tRuns clientside unit tests")
 	console.log("--> gulp test:server\t:\tRuns serverside unit tests")
 	console.log("--> gulp dev\t\t:\tServes application in development environment")
@@ -58,8 +62,7 @@ function runServer(config) {
 }
 
 function autoReload() {
-	gulp.watch(['public/**'], function() {
-		buildAll()
+	gulp.watch(['public/**/*.ts'], function() {
 		singletonServer(server_config)
 		console.log("Detected change! Reloading server...")
 	})
@@ -79,14 +82,15 @@ function singletonServer(config) {
 	}
 }
 
+// Automated package builder currently WIP
 function buildAll() {
 	console.log("Building files...")
 	// buildTypescript()
 }
 
-// Currently broken. Do not use please
-// function buildTypescript() {
-// 	gulp.src(['public/**/*.ts'])
-// 		.pipe(typescript())
-// 		.pipe(gulp.dest('dest/'))
-// }
+// Typescript automated building currently WIP
+function buildTypescript(){
+	// run("tsc public/**/*.ts").exec()
+	// gulp.src(['public/**/*.ts'])
+	// 	.pipe(typescript())
+}

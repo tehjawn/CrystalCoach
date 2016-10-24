@@ -19,9 +19,6 @@
     "url": "https://github.com/tehjawn/CrystalCoach/issues"
   },
   "dependencies": {
-    "express": "~4.14.0",
-    "firebase": "^3.5.1",
-
     "@angular/common": "~2.1.0",
     "@angular/compiler": "~2.1.0",
     "@angular/core": "~2.1.0",
@@ -32,21 +29,27 @@
     "@angular/router": "~3.1.0",
     "@angular/upgrade": "~2.1.0",
     "angular-in-memory-web-api": "~0.1.5",
+    "body-parser": "^1.15.2",
     "bootstrap": "^3.3.7",
+    "connect-session-firebase": "^3.5.0",
     "core-js": "^2.4.1",
+    "express": "~4.14.0",
+    "express-session": "^1.14.1",
+    "firebase": "^3.5.1",
     "reflect-metadata": "^0.1.8",
     "rxjs": "5.0.0-beta.12",
     "systemjs": "0.19.39",
     "zone.js": "^0.6.25"
   },
   "devDependencies": {
+    "@types/node": "^6.0.45",
+    "concurrently": "^3.0.0",
     "gulp": "^3.9.1",
     "gulp-chimp": "^2.1.0",
+    "gulp-run": "^1.7.1",
     "gulp-tsc": "^1.2.4",
-
-    "concurrently": "^3.0.0",
     "lite-server": "^2.2.2",
     "typescript": "^2.0.3",
-    "typings":"^1.4.0"
+    "typings": "^1.4.0"
   }
 }
