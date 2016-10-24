@@ -2,7 +2,7 @@
 // Stores various tasks to be automated by Gulp task runner
 
 var gulp = require('gulp')
-var server = require('./server.js')
+var app_server = require('./server.js')
 var chimp = require('gulp-chimp')
 var typescript = require('gulp-tsc')
 
@@ -66,16 +66,16 @@ function autoReload() {
 }
 
 function singletonServer(config) {
-	if (!server){
+	if (!app_server){
 		try {
-			server.create({ port: config.port })
+			app_server.create({ port: config.port })
 		} catch(e) {
 			console.log("Cannot create server. Is there a server already running on port " + config.port + "?")
 			console.log(e)
 		}
 	} else {
-		server.destroy()
-		server.create({ port: config.port })
+		app_server.destroy()
+		app_server.create({ port: config.port })
 	}
 }
 

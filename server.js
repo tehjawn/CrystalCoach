@@ -11,7 +11,7 @@ var api = require('./server/api')
 // console.log(api.routes.users.getAll)
 
 var app = express()
-var server
+var app_server
 
 // Import server configuration files
 var config = require('./server/config')
@@ -45,14 +45,14 @@ function createServer(config) {
 	// Listens on Node Environment's exported Port number, or uses passed in config's port value, or uses Port 3023 by default
 	// Run command 'export port=[insert port number of choice here]'
 	// Run command 'export NODE_ENV=[insert environment name of choice here]'
-	server = app.listen(port, function(err) {
+	app_server = app.listen(port, function(err) {
 		if (err) console.log(err)
 		else console.log("Listening on Port " + port + " (" + env + ")")
 	});
 }
 
 function destroyServer() {
-	server ? server.close() : console.log("Server does not exist!")
+	app_server ? app_server.close() : console.log("Server does not exist!")
 }
 
 //-------------------------------------------------------//
