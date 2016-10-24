@@ -7,6 +7,9 @@ module.exports.destroy = destroyServer
 
 // Server Libraries
 var express = require('express')
+var api = require('./server/api')
+// console.log(api.routes.users.getAll)
+
 var app = express()
 var server
 
@@ -35,12 +38,16 @@ function createServer(config) {
 	// 	res.send('Hello World');
 	// });
 
+	// Set Port and Env server variables
+	var port = process.env.PORT || config.port || 3023
+	var env = process.env.NODE_ENV || config.env || "default"
+
 	// Listens on Node Environment's exported Port number, or uses passed in config's port value, or uses Port 3023 by default
 	// Run command 'export port=[insert port number of choice here]'
 	// Run command 'export NODE_ENV=[insert environment name of choice here]'
-	server = app.listen(process.env.PORT || config.port || 3023, function(err) {
+	server = app.listen(port, function(err) {
 		if (err) console.log(err)
-		else console.log("Listening on Port " + process.env.PORT + " (" + process.env.NODE_ENV || config.port || 3023 + ")")
+		else console.log("Listening on Port " + port + " (" + env + ")")
 	});
 }
 

@@ -9,7 +9,8 @@ var typescript = require('gulp-tsc')
 gulp.task('default', function() {
 	console.log("Running Gulp in testing environment...")
 	runServer({
-		port: 8000
+		port: 8000,
+		env: "test"
 	})
 })
 
@@ -45,21 +46,34 @@ function runServer(config) {
 
 	// If a server already exists within this runtime, destroy it and create a new one
 	// Otherwise, proceed with creating a new server
+
+	singletonServer(config)
+
+	// Watches public folder and restarts Express server on change
+	console.log("Watching ~/public/**...")
+	autoReload()
+}
+
+function autoReload() {
+	gulp.watch(['public/**'], function() {
+		buildTypescript()
+		singletonServer(config)
+		console.log("Detected change! Reloading server...")
+	})
+}
+
+function singletonServer(config) {
 	if (server){
-		server.create({ port: config.port })
+		try {
+			server.create({ port: config.port })
+		} catch(e) {
+			console.log("Cannot create server. Is there a server already running on port " + config.port + "?")
+			console.log(e)
+		}
 	} else {
 		server.destroy()
 		server.create({ port: config.port })
 	}
-
-	// Watches public folder and restarts Express server on change
-	console.log("Watching ~/public/**...")
-	gulp.watch(['public/**'], function() {
-		buildTypescript()
-		server.destroy()
-		console.log("Detected change! Reloading server...")
-		server.create({ port: config.port })
-	})
 }
 
 function buildAll() {
