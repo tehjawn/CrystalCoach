@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="utf-8">
+    <title>Basic Animation Demo Example</title>
+    <style type="text/css">
+        body {
+            overflow         : hidden;
+            background-color : black;
+            margin           : 0 0 0 0;
+            padding          : 0 0 0 0;
+            -webkit-transform:rotate(0deg);
+        }
+    </style>
+    <script src="https://www.leiainc.com/examples/js/three.js"></script>
+    <script src="https://www.leiainc.com/build/LeiaCore.js"></script>
+</head>
+<body></body>
+<script>
+  // Add global variables here
+
+  // three.js scene
+  var scene;
+
+  // Essential LEIA objects
+  var leiaDisplayInfo, leiaHoloScreen, leiaRenderer, leiaKeys;
+
+  var sphere;
+
+  window.onload = function () {
+      // Start initialization and render once page has loaded
+      init();
+      animate();
+  };
+
+  function init() {
+    // Initialize everything that LEIA needs
+    leiaDisplayInfo     = new LeiaDisplayInfo('https://www.leiainc.com/config/displayPrototypeSmallDevKit.json');
+    leiaHoloScreen      = new LeiaHoloScreen();
+    leiaHoloScreen.setLeiaConfig(leiaDisplayInfo);
+    leiaRenderer        = new LeiaRenderer(leiaHoloScreen);
+
+    // Init three.js scene
+    scene  = new THREE.Scene();
+
+    addObjects();
+    addEvents();
+
+    document.body.appendChild(leiaRenderer.renderer.domElement);
+  }
+
+  function addObjects() {
+      // Add new geometries
+      var boxGeometry = new THREE.BoxGeometry(6, 6, 6);
+      var sphereGeometry = new THREE.SphereGeometry(4, 32, 32);
+      var torusGeometry = new THREE.TorusGeometry(3, 2.5, 16, 50);
+      var cylinderGeometry = new THREE.CylinderGeometry(3, 3, 6, 32);
+      var planeGeometry = new THREE.PlaneGeometry(40, 40, 32);
+
+      // Add more materials
+      var greenMaterial = new THREE.MeshPhongMaterial({ color: 0x00ff00, shininess: 30 });
+      var redMaterial = new THREE.MeshPhongMaterial( { color: 0xff0000, shininess: 30 } );
+      var blueMaterial = new THREE.MeshPhongMaterial({ color: 0x2194ce, shininess: 30 });
+      var whiteMaterial = new THREE.MeshPhongMaterial( { color: 0x00ffff, shininess: 30 } );
+      var planeMaterial = new THREE.MeshPhongMaterial( {color: 0x777777, side: THREE.DoubleSide} );
+
+      // Create New Meshes
+      var cube = new THREE.Mesh(boxGeometry, greenMaterial);
+      sphere = new THREE.Mesh(sphereGeometry, redMaterial);
+      var torus = new THREE.Mesh(torusGeometry, blueMaterial);
+      var cylinder = new THREE.Mesh(cylinderGeometry, whiteMaterial);
+      var plane = new THREE.Mesh(planeGeometry, planeMaterial);
+
+      // Set shape positions
+      sphere.position.set(-5,5, 2.0);
+      cube.position.set(5,5,1.5);
+      torus.position.set(5,-5,1);
+      cylinder.position.set(-5,-5,1.5);
+
+      // Set Shape Rotations
+      cylinder.rotation.x = 1.57;
+
+      // Add new shapes to scene
+      scene.add(cube);
+      scene.add(sphere);
+      scene.add(torus);
+      scene.add(cylinder);
+      scene.add(plane);
+
+      // Enable shadows
+      cube.castShadow = true;
+      cube.receiveShadow = true;
+      sphere.castShadow = true;
+      sphere.receiveShadow = true;
+      torus.castShadow = true;
+      torus.receiveShadow = true;
+      cylinder.castShadow = true;
+      cylinder.receiveShadow = true;
+      plane.castShadow = true;
+      plane.receiveShadow = true;
+
+      // Add light sources
+      var ambientLight = new THREE.AmbientLight(0x606060);
+      scene.add(ambientLight);
+
+      var directionalLight = new THREE.SpotLight(0xeeeeee);
+      directionalLight.position.set(20, 40, 40);
+      directionalLight.shadow.mapSize.width = 512;
+      directionalLight.shadow.mapSize.height = 512;
+      directionalLight.castShadow = true;
+    scene.add(directionalLight);
+  }
+
+  function addEvents() {
+      // Add event handlers here
+      leiaKeys = new LeiaKeystrokeHandler(scene, leiaHoloScreen, leiaRenderer, true);
+  }
+
+  function animate() {
+      requestAnimationFrame(animate);
+
+      // Animate the sphere
+      sphere.position.z = 2*(1.5+0.5*Math.cos(leiaRenderer.timer * 3));
+
+      // Render scene
+      leiaRenderer.render(scene, leiaHoloScreen);
+  }
+</script>
+</html>

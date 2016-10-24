@@ -1,0 +1,79 @@
+@import url('https://fonts.googleapis.com/css?family=Open+Sans|Roboto');
+
+html, body {
+	margin: 0;
+	padding: 0;
+	font-family: 'Open Sans', 'Roboto', sans-serif;
+}
+
+nav {
+	position: fixed;
+	/*background-color: black;*/
+	width: 100vw;
+	height: 10vh;
+	transition: .5s;
+}
+
+.nav-logo {
+	display: inline;
+
+}
+
+.nav-title {
+	display: inline;
+	margin-top: 4.5vh;
+	position: absolute;
+	font-size: 120%;
+	color: white;
+	font-weight: 300;
+}
+
+.nav-body {
+	background-color: rgb(150,209,229);
+	height: 11vh;
+	box-shadow: 0 0 15px -5px black;
+}
+
+nav ul {
+	float: right;
+	list-style-type: none;
+	margin: 0;
+	padding: 0;
+}
+
+nav li {
+	display: inline;
+}
+
+nav li a {
+	color: white;
+	text-decoration: none;
+	padding-right: 15px;
+}
+
+img {
+	width: auto;
+	height: 100%;
+}
+
+section {
+	min-width: 100vw;
+	min-height: 50vh;
+	background-color: #aaa;
+}
+
+#landing {
+	padding: 12vh 2vw 2vh 2vw;
+	background-color: #96d1e5;
+	color: white;
+}
+
+@media screen and (max-width: 768px) {
+	nav {
+		display: none;
+	}
+
+	#landing {
+		padding: 0;
+	}
+}
