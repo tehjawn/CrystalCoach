@@ -66,7 +66,7 @@ function autoReload() {
 }
 
 function singletonServer(config) {
-	if (server){
+	if (!server){
 		try {
 			server.create({ port: config.port })
 		} catch(e) {
