@@ -17,7 +17,7 @@ app.use(bodyParser.json())
 var app_server
 
 // Import server configuration files
-var config = require('./server/config')
+// var config = require('./server/config')
 
 function server() {
 
@@ -60,30 +60,30 @@ function destroyServer() {
 
 //-------------------------------------------------------//
 
-// Firebase
-var firebase = require('firebase')
-var FirebaseStore = require('connect-session-firebase')(session)
+// // Firebase
+// var firebase = require('firebase')
+// var FirebaseStore = require('connect-session-firebase')(session)
 
-var firebase_app = firebase.initializeApp({
-	serviceAccount: config.firebase.key,
-	databaseURL: config.firebase.databaseURL
-})
+// var firebase_app = firebase.initializeApp({
+// 	serviceAccount: config.firebase.key,
+// 	databaseURL: config.firebase.databaseURL
+// })
 
-app.use(session({
-	store: new FirebaseStore({
-		database: firebase_app.database()
-	}),
-	secret: config.firebase.secret,
-	resave: true,
-	saveUninitialized: true
-}))
+// app.use(session({
+// 	store: new FirebaseStore({
+// 		database: firebase_app.database()
+// 	}),
+// 	secret: config.firebase.secret,
+// 	resave: true,
+// 	saveUninitialized: true
+// }))
 
-// Firebase Test Watcher
-	var db = firebase_app.database()
-	var ref = db.ref('/test')
-	ref.on('value', function(snapshot) {
-		console.log(snapshot.val())
-	})
+// // Firebase Test Watcher
+// 	var db = firebase_app.database()
+// 	var ref = db.ref('/test')
+// 	ref.on('value', function(snapshot) {
+// 		console.log(snapshot.val())
+// 	})
 
 // Test Routes
 // app.get('/', function(req, res) {
