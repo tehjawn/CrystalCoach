@@ -4,7 +4,11 @@ CrystalCoach
 
 A health and wellness coaching platform built for everyone!
 
+Visit the live website at [www.crystalcoach.me](http://crystalcoach.me/)
+
 ---
+
+[Installation Instructions](https://docs.google.com/document/d/13RVbL_867amWWkUne_92HX-y3LlCvPCvo8bT8NSPSY4/edit)
 
 [Project Google Drive Folder](https://drive.google.com/drive/u/0/folders/0B4L2bHrQgHD4Q1lfQmlqaDJqeTA)
 
@@ -12,6 +16,6 @@ A health and wellness coaching platform built for everyone!
 
 ---
 
-Created by John Nguyen and Xiaosheng Zheng
+*Created by John Nguyen and Xiaosheng Zheng*
 
 CrystalCoach is open-source under the Apache 2.0 license. All libraries, frameworks and platforms used belong to their respective owners under their respective licenses.

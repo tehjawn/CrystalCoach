@@ -1,6 +1,6 @@
 {
   "name": "CrystalCoach",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "description": "",
   "main": "index.js",
   "scripts": {
@@ -21,6 +21,7 @@
   },
   "devDependencies": {
     "gulp": "^3.9.1",
-    "gulp-chimp": "^2.1.0"
+    "gulp-chimp": "^2.1.0",
+    "gulp-tsc": "^1.2.4"
   }
 }
