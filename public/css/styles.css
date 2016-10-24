@@ -35,10 +35,12 @@ nav {
 }
 
 nav ul {
+	display: inline;
 	float: right;
-	list-style-type: none;
-	margin: 0;
+	margin-right: 40px;
+	margin-top: 4vh;
 	padding: 0;
+	list-style-type: none;
 }
 
 nav li {
@@ -46,9 +48,9 @@ nav li {
 }
 
 nav li a {
+	font-size: 120%;
 	color: white;
-	text-decoration: none;
-	padding-right: 15px;
+	text-decoration: underline;
 }
 
 img {
@@ -57,15 +59,39 @@ img {
 }
 
 section {
-	min-width: 100vw;
+	min-width: 100%;
 	min-height: 50vh;
 	background-color: #aaa;
 }
 
 #landing {
+	min-height: 80vh;
 	padding: 12vh 2vw 2vh 2vw;
 	background-color: #96d1e5;
 	color: white;
+}
+
+#landing .landing-text {
+	position: absolute;
+	bottom: 30%;
+}
+
+#landing h1 { font-size: 5em; }
+
+.landing-cta {
+	text-align: center;
+}
+
+#about {
+	padding: 12vh 2vw 2vh 2vw;
+	background-color: #96d1e5;
+}
+
+#about .card {
+	background-color: white;
+	border-radius: 10px;
+	width: 50%;
+	padding: 20px;
 }
 
 @media screen and (max-width: 768px) {
