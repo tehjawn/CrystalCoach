@@ -1,6 +1,6 @@
 var crystalApp = angular.module('crystalApp', [])
 
-crystalApp.controller('MainCtrl', ['$scope', function MainCtrl($scope) {
+crystalApp.controller('MainCtrl', ['$scope', '$http', function MainCtrl($scope, $http) {
     $scope.response = function(input) {
         $scope.userSaid = input
         responsiveVoice.speak(input)
@@ -44,5 +44,16 @@ crystalApp.controller('MainCtrl', ['$scope', function MainCtrl($scope) {
             $scope.response(this.text)
             $scope.text = '';
         }
-    };
+    }
+
+    $scope.iQuote = function() {
+    	$http.get('./json/test.json').
+    success(function(data, status, headers, config) {
+      $scope.inspire = data;
+      $scope.response(data.quote + " Quoted by " +data.name)
+    }).
+    error(function(data, status, headers, config) {
+      // log error
+    });
+    }
 }])
