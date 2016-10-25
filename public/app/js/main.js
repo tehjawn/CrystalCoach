@@ -2,6 +2,7 @@ var crystalApp = angular.module('crystalApp', [])
 
 crystalApp.controller('MainCtrl', ['$scope', function MainCtrl($scope) {
     $scope.response = function(input) {
+        $scope.userSaid = input
         responsiveVoice.speak(input)
     }
 
@@ -25,9 +26,9 @@ crystalApp.controller('MainCtrl', ['$scope', function MainCtrl($scope) {
                 if (event.results[i].isFinal) {
                     final = final.concat(event.results[i][0].transcript);
                     console.log(event.results[i][0].transcript);
-                    $scope.$apply();
+                    
                     $scope.response(final)
-                    speech = final;
+                    $scope.$apply();
                 } else {
                     interim.push(event.results[i][0].transcript);
                     console.log('interim ' + event.results[i][0].transcript);

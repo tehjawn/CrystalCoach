@@ -27,19 +27,19 @@
     </div>
     <!-- Fun with the BackGround -->
     <div class="wave"></div>
-    <!-- <div ng-controller="responseCtrl"> -->
-    <!-- <img src="./img/mic.png" ng-click="response()"> -->
-    <!-- </div> -->
-    <!-- <div ng-controller="speechCtrl"> -->
+    
+    <!-- Speaking to Crytal -->
     <center>
         <img src="./img/mic.png" ng-click="speech()">
+        <h3> User Said... {{userSaid}}<h3>
     </center>
-    <!-- </div> -->
+
+    <!-- Text to Speech -->
     <div>
      <form ng-submit="submit()">
         <h3> Crystal Say This: <h3>
         <input type="text" ng-model="text" name="text" />
-        <input type="submit" id="submit" value="SAY THIS" />
+        <input type="submit" id="submit" value="SAY THIS RIGHT NOW" />
         <h1>{{text}}</h1>
       </form>
     </div>
