@@ -1,13 +1,12 @@
 var crystalApp = angular.module('crystalApp', [])
 
-crystalApp.controller('responseCtrl', ['$scope'] function responseCtrl($scope) {
-    $scope.response = function() {
-        responsiveVoice.speak("Chet you scrub")
+crystalApp.controller('MainCtrl', ['$scope', function MainCtrl($scope) {
+    $scope.response = function(input) {
+        responsiveVoice.speak(input)
     }
-})
 
-crystalApp.controller('speechCtrl', ['$scope'] function speechCtrl($scope) {
     $scope.speech = function() {
+        console.log("Starting speech recognition...")
         var rec = new webkitSpeechRecognition();
         var interim = [];
         var final = '';
@@ -19,9 +18,7 @@ crystalApp.controller('speechCtrl', ['$scope'] function speechCtrl($scope) {
             console.log('error!');
         };
 
-        start = function() {
-            rec.start();
-        };
+        rec.start();
 
         rec.onresult = function(event) {
             for (var i = event.resultIndex; i < event.results.length; i++) {
@@ -29,6 +26,7 @@ crystalApp.controller('speechCtrl', ['$scope'] function speechCtrl($scope) {
                     final = final.concat(event.results[i][0].transcript);
                     console.log(event.results[i][0].transcript);
                     $scope.$apply();
+                    $scope.response(final)
                 } else {
                     interim.push(event.results[i][0].transcript);
                     console.log('interim ' + event.results[i][0].transcript);
@@ -38,4 +36,4 @@ crystalApp.controller('speechCtrl', ['$scope'] function speechCtrl($scope) {
         }
     }
 
-})
+}])
