@@ -27,6 +27,7 @@ crystalApp.controller('MainCtrl', ['$scope', function MainCtrl($scope) {
                     console.log(event.results[i][0].transcript);
                     $scope.$apply();
                     $scope.response(final)
+                    speech = final;
                 } else {
                     interim.push(event.results[i][0].transcript);
                     console.log('interim ' + event.results[i][0].transcript);
@@ -36,4 +37,11 @@ crystalApp.controller('MainCtrl', ['$scope', function MainCtrl($scope) {
         }
     }
 
+    $scope.text = 'CRYSTAL WILL SAY WHATEVER YOU WANT';
+    $scope.submit = function() {
+        if ($scope.text) {
+            $scope.response(this.text)
+            $scope.text = '';
+        }
+    };
 }])
