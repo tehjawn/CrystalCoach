@@ -39,6 +39,7 @@ nav {
 }
 
 .nav-body {
+	height: 11vh;
 	background-color: rgba(150,209,229, 0.8);
 	box-shadow: 0 0 15px -5px black;
 }
@@ -80,7 +81,7 @@ section {
 
 /* LANDING SECTION */
 #landing {
-	min-height: 90vh;
+	min-height: 85vh;
 	background-color: #96d1e5;
 	background-image: url(../assets/landing-blur-sm.jpg);
 	background-size: cover;
@@ -95,7 +96,7 @@ section {
   background: -o-linear-gradient(bottom, rgba(100,209,229, .8) 20%, rgba(20,120,150, .8) 100%); /* For Opera 11.1 to 12.0 */
   background: -moz-linear-gradient(bottom, rgba(100,209,229, .8) 20%, rgba(20,120,150, .8) 100%); /* For Firefox 3.6 to 15 */
   background: linear-gradient(to bottom, rgba(100,209,229, .8) 20%, rgba(20,120,150, .8) 100%); /* Standard syntax */
-	height: 90vh;
+	height: 85vh;
 }
 
 #landing .landing-text {
@@ -171,6 +172,7 @@ section {
 /* FEATURES SECTION */
 
 #features {
+	height: 60vh;
 	background-color: rgba(20,120,150, .8);
 	background-image: url(../assets/landing-blur-sm.jpg);
 	background-size: cover;
@@ -179,7 +181,7 @@ section {
 }
 
 #features .feature-overlay {
-	height: 50vh;
+	height: 60vh;
 	background-color: rgba(20,120,150, .8);
 }
 
@@ -207,11 +209,11 @@ section {
 	background-size: cover;
 	background-repeat: no-repeat;
 	background-attachment: fixed;
-	height: 30vh;
+	height: 10vh;
 }
 
 #about .about-overlay {
-	height: 30vh;
+	height: 10vh;
 	background-color: rgba(20,120,150, .8);
   background: -webkit-linear-gradient(bottom, rgba(20,120,150, .8) 20%, rgba(0,120,100, .8) 100%); /* For Safari 5.1 to 6.0 */
   background: -o-linear-gradient(bottom, rgba(20,120,150, .8) 20%, rgba(0,120,100, .8) 100%); /* For Opera 11.1 to 12.0 */
@@ -232,6 +234,12 @@ section {
 	box-shadow: 0 5px 15px -5px black;
 }
 
+.footer-cc {
+	background-color: #234;
+	box-shadow: 0 0 15px -5px black;
+	padding: 20px;
+	color: white;
+}
 
 @media screen and (max-width: 768px) {
 /*	nav {
