@@ -20,15 +20,33 @@
 <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
 <![endif]-->
     <!-- Add your site or application content here -->
-    CHAT WITH CRYSTAL
+    <div class="chatTitle">
+        <center>
+            <h1>CHAT WITH CRYSTAL</h1>
+        </center>
+    </div>
     <!-- Fun with the BackGround -->
     <div class="wave"></div>
     <!-- <div ng-controller="responseCtrl"> -->
     <!-- <img src="./img/mic.png" ng-click="response()"> -->
     <!-- </div> -->
     <!-- <div ng-controller="speechCtrl"> -->
-    <img src="./img/mic.png" ng-click="speech()">
+    <center>
+        <img src="./img/mic.png" ng-click="speech()">
+    </center>
     <!-- </div> -->
+    <div>
+     <form ng-submit="submit()">
+        <h3> Crystal Say This: <h3>
+        <input type="text" ng-model="text" name="text" />
+        <input type="submit" id="submit" value="SAY THIS" />
+        <h1>{{text}}</h1>
+      </form>
+    </div>
+    
+
+
+
     <script src="http://code.jquery.com/jquery-1.12.4.min.js"></script>
     <script>
     window.jQuery || document.write('<script src="js/vendor/jquery-1.12.4.min.js"><\/script>')

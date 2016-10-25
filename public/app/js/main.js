@@ -1,10 +1,8 @@
 var crystalApp = angular.module('crystalApp', [])
-var speech;
 
 crystalApp.controller('MainCtrl', ['$scope', function MainCtrl($scope) {
     $scope.response = function(input) {
         responsiveVoice.speak(input)
-        speech = input
     }
 
     $scope.speech = function() {
@@ -39,6 +37,11 @@ crystalApp.controller('MainCtrl', ['$scope', function MainCtrl($scope) {
         }
     }
 
-    $scope.speechToText = speech
-
+    $scope.text = 'CRYSTAL WILL SAY WHATEVER YOU WANT';
+    $scope.submit = function() {
+        if ($scope.text) {
+            $scope.response(this.text)
+            $scope.text = '';
+        }
+    };
 }])
