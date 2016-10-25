@@ -5,14 +5,13 @@ Feature: Create server
 	So that I can serve the CrystalCoach web application
 
 	Scenario: Creating server for testing
-		When "gulp serve:test" is run
+		When Gulp initializes server for testing
 		Then the server is running on port "8023"
 
 	Scenario: Creating server for development
-		When "gulp serve:dev" is run
+		When Gulp initializes server for development
 		Then the server is running on port "8000"
 
-	@watch
 	Scenario: Creating server for production
-		When "gulp deploy" is run
+		When Gulp initializes server for deployment
 		Then the server is running on port "80"

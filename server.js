@@ -37,9 +37,9 @@ function createServer(config) {
 	// Uses 'public' folder as default route for Express Server
 	app.use(express.static('public'))
 
-	// app.get('/', function(req,res){
-	// 	res.send('Hello World');
-	// });
+	app.post('/', function(req,res){
+		res.send('Hello World');
+	});
 
 	// Set Port and Env server variables
 	var port = process.env.PORT || config.port || 3023

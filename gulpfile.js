@@ -11,7 +11,7 @@ var typescript = require('gulp-tsc')
 var server_config
 
 gulp.task('default', function() {
-	console.log("Running Gulp in testing environment...")
+	console.log("Running Gulp in testing environment (for more options use 'gulp help')...")
 	server_config = {
 		port: 8000,
 		env: "test"
@@ -22,12 +22,12 @@ gulp.task('default', function() {
 gulp.task('help', function() {
 	console.log("Available gulp tasks:")
 	console.log("--> gulp\t\t:\tServes application in testing environment")
-	console.log("--> gulp build:ts\t:\tCompiles Typescript files to JS")
-	console.log("--> gulp build:sass\t:\tCompiles Sass files to CSS")
-	console.log("--> gulp test:client\t:\tRuns clientside unit tests")
+	console.log("--> gulp build:ts\t:\tCompiles Typescript files to JS [WIP]")
+	console.log("--> gulp build:sass\t:\tCompiles Sass files to CSS [WIP]")
+	console.log("--> gulp test:client\t:\tRuns clientside unit tests [WIP]")
 	console.log("--> gulp test:server\t:\tRuns serverside unit tests")
-	console.log("--> gulp dev\t\t:\tServes application in development environment")
-	console.log("--> gulp deploy\t\t:\tServes application in production environment")
+	console.log("--> gulp dev\t\t:\tServes application in development environment [WIP]")
+	console.log("--> gulp deploy\t\t:\tServes application in production environment [WIP]")
 	return
 })
 
@@ -48,6 +48,8 @@ gulp.task('deploy', function() {
 	console.log("Deploying CrystalCoach...")
 })
 
+// Logic Functions
+
 function runServer(config) {
 	buildAll()
 
@@ -62,7 +64,7 @@ function runServer(config) {
 }
 
 function autoReload() {
-	gulp.watch(['public/**/*.ts'], function() {
+	gulp.watch(['public/**/*'], function() {
 		singletonServer(server_config)
 		console.log("Detected change! Reloading server...")
 	})
