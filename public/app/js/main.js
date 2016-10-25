@@ -1,8 +1,10 @@
 var crystalApp = angular.module('crystalApp', [])
+var speech;
 
 crystalApp.controller('MainCtrl', ['$scope', function MainCtrl($scope) {
     $scope.response = function(input) {
         responsiveVoice.speak(input)
+        speech = input
     }
 
     $scope.speech = function() {
@@ -27,6 +29,7 @@ crystalApp.controller('MainCtrl', ['$scope', function MainCtrl($scope) {
                     console.log(event.results[i][0].transcript);
                     $scope.$apply();
                     $scope.response(final)
+                    speech = final;
                 } else {
                     interim.push(event.results[i][0].transcript);
                     console.log('interim ' + event.results[i][0].transcript);
@@ -35,5 +38,7 @@ crystalApp.controller('MainCtrl', ['$scope', function MainCtrl($scope) {
             }
         }
     }
+
+    $scope.speechToText = speech
 
 }])
