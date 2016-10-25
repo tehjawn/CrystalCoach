@@ -1,4 +1,5 @@
-module.exports = {
-	// General Body Routes
-	generateToken: require('./generate-token.js')
-}
+const auth = require('express').Router()
+
+auth.get('/', require('./generate-token.js'))
+
+module.exports = auth

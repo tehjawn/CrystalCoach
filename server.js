@@ -14,6 +14,7 @@ var api = require('./server/api')
 
 var app = express()
 app.use(bodyParser.json())
+app.use('/', api.routes)
 var app_server
 
 // Import server configuration files
@@ -37,9 +38,7 @@ function createServer(config) {
 	// Uses 'public' folder as default route for Express Server
 	app.use(express.static('public'))
 
-	app.post('/', function(req,res){
-		res.send('Hello World');
-	});
+
 
 	// Set Port and Env server variables
 	var port = process.env.PORT || config.port || 3023
