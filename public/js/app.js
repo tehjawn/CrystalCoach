@@ -3,7 +3,7 @@
 
 // Changes nav bar styling upon scrolling 100 pixels down
 var $nav = $("nav")
-// var $mac = $("#mac")
+var $mac = $("#mac")
 $(document).scroll(function() {
 	if ($(window).scrollTop() > 100) {
 		$nav.addClass("nav-body")

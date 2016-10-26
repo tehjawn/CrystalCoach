@@ -27,7 +27,7 @@
   <nav>
     <img class="nav-logo" src="./assets/logo-tsp-w.png" />
     <h1 class="nav-title">CrystalCoach</h1>
-    <ul>
+    <ul class="nav-list">
       <li><a href="./app">Open App</a></li>
     </ul>
   </nav>
@@ -35,20 +35,20 @@
     <div class="overlay landing-overlay">
       <div class="content">
         <div class="landing-text">
-          <h1>Be Confident with <u>Crystal</u></h1>
+          <h1>Meet <b>Crystal</b></h1>
+          <br>
           <h4>The personalized fitness coach who adapts to you</h4>
         </div>
-                    		<center><h3>Ready to start improving your health?</h3></center>
-                    		<br>
         <div id="mac" class="device-container">
           <div class="device animated fadeInUp">
             <div class="device-mockup" data-device="macbook" data-orientation="portrait" data-color="black">
               <div class="device device-shadow">
                 <div class="screen">
                   <div class="cc-app-showcase">
-                    <div class="overlay showcase-overlay">
+                    <div class="overlay showcase-overlay" onclick="window.location = './app'">
                     	<div class="showcase-content">
-	                      <button class="btn landing-cta-btn" onclick="window.location = './app'">Get Started Today!</button>
+                        <img src="./assets/logo-sm.png"" />
+	                      <button id="landing-cta-btn" class="btn landing-cta-btn animated jello">Get started today!</button>
 	                    </div>
                     </div>
                   </div>
@@ -84,26 +84,28 @@
     	<br>
       <h2>CrystalCoach Features</h2>
       <hr>
-      <div class="col-md-4 col-sm-4">
-				<h1><i class="fa fa-book"></i></h1><br>
-        <h3>Activity Recorder</h3><br>
-        <p class="text-center">
-					Lorem ipsum Deserunt fugiat Duis aliquip in ullamco Ut ad aute eiusmod in ut Ut sint aliquip.
-        </p>
-      </div>
-      <div class="col-md-4 col-sm-4">
-				<h1><i class="fa fa-microphone"></i></h1><br>
-        <h3>Voice Assistant</h3><br>
-        <p class="text-center">
-					Lorem ipsum Deserunt fugiat Duis aliquip in ullamco Ut ad aute eiusmod in ut Ut sint aliquip.
-        </p>
-      </div>
-      <div class="col-md-4 col-sm-4">
-				<h1><i class="fa fa-book"></i></h1><br>
-        <h3>Health Recommendations</h3><br>
-        <p class="text-center">
-					Lorem ipsum Deserunt fugiat Duis aliquip in ullamco Ut ad aute eiusmod in ut Ut sint aliquip.
-        </p>
+      <div class="row">
+        <div class="col-md-4 col-sm-4">
+  				<h1><i class="fa fa-book"></i></h1><br>
+          <h3>Activity Recorder</h3><br>
+          <p class="text-center">
+  					Lorem ipsum Deserunt fugiat Duis aliquip in ullamco Ut ad aute eiusmod in ut Ut sint aliquip.
+          </p>
+        </div>
+        <div class="col-md-4 col-sm-4">
+  				<h1><i class="fa fa-microphone"></i></h1><br>
+          <h3>Voice Assistant</h3><br>
+          <p class="text-center">
+  					Lorem ipsum Deserunt fugiat Duis aliquip in ullamco Ut ad aute eiusmod in ut Ut sint aliquip.
+          </p>
+        </div>
+        <div class="col-md-4 col-sm-4">
+  				<h1><i class="fa fa-book"></i></h1><br>
+          <h3>Health Recommendations</h3><br>
+          <p class="text-center">
+  					Lorem ipsum Deserunt fugiat Duis aliquip in ullamco Ut ad aute eiusmod in ut Ut sint aliquip.
+          </p>
+        </div>
       </div>
     </div>
   </section>

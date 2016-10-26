@@ -8,5 +8,6 @@ routes.post('/', (req, res) => {
 
 routes.use('/users', require('./users'))
 routes.use('/auth', require('./auth'))
+routes.use('/crystal', require('./crystal'))
 
 module.exports = routes;
