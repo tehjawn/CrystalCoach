@@ -1,14 +1,14 @@
 <div controller="HomeCtrl as home">
-	<div class="col-md-3">
+	<div class="col-md-3 col-md-offset-1 col-sm-hidden">
 
 	</div>
-  <div class="col-md-4 card-stack">
+  <div class="col-md-4 col-sm-12 card-stack">
     <div class="container">
     	<h3>Stories</h3>
       <div ng-repeat="card in cards">
         <div class="card">
           <div class="card-set-img-size-1">
-            <center><img class="card-img-top card-img-fit" src="../assets/landing-sm.jpg" alt="Card image cap"></center>
+            <center><img class="card-img-top card-img-fit" ng-src="../assets/cards/{{card.image}}" ng-click="openURL(card.url)" alt="Card image cap"></center>
           </div>
           <div class="card-block">
             <h4 class="card-title">{{card.title}}</h4>
@@ -20,17 +20,17 @@
       </div>
     </div>
   </div>
-  <div class="col-md-3">
+  <div class="col-md-3 col-sm-hidden">
   <br>
-  	<div class="row">
-  		<div class="col-md-12">
-1
-  		</div>
-  	</div>
-  	<div class="row">
-  		<div class="col-md-12">
-1
-  		</div>
-  	</div>
+    <div class="row">
+      <div class="col-md-12">
+| October 2016
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-12">
+
+      </div>
+    </div>
   </div>
 </div>

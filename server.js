@@ -15,6 +15,12 @@ var api = require('./server/api')
 var app = express()
 app.use(bodyParser.json())
 app.use('/', api.routes)
+
+// TODO - Implement catch-all wildcard route to redirect back to original route (app)
+// app.all('/app/**', function(req, res){
+// 	res.redirect('/app')
+// })
+
 var app_server
 
 // Import server configuration files

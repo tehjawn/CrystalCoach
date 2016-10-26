@@ -6,17 +6,20 @@ module.exports.buildResponse = function(intent, params) {
 	if(intent == "Record Activity - Drink") {
 		var drink = require('./drink')
 		return drink.calculate({}, {
-			drink: params.drink || "~"
+			drink: params.drink || "lemonade"
 		})
 	} else if (intent == "Record Activity - Food") {
 		var food = require('./food')
 		return food.calculate({}, {
-			food: params.food || "~"
+			food: params.food || "banana"
+		}, function(resp){
+			console.log(resp)
+			return resp
 		})
-	} else if (intent == "Record Activity - General Exercise") {
+	} else if (intent == "Record Activity - General Exercises") {
 		var exercise = require('./exercise')
 		return exercise.calculate({}, {
-			exercise: params.exercise || "~"
+			exercise: params.exercise || "pushups"
 		})
 	} else {
 		return "Error - intent not found!"

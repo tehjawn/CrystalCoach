@@ -1,59 +1,105 @@
 <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
-<div class="container">
-    <div class="row">
-        <div class="col-lg-3 col-sm-6">
-            <div class="card hovercard">
-                <div class="cardheader">
-                </div>
-                <div class="avatar">
-                    <img alt="" src="http://lorempixel.com/400/200/sports/">
-                </div>
-                <div class="info">
-                    <div class="title">
-                        <a>John Doe</a>
-                    </div>
-                    <div class="description">Developer at Lalaland</div>
-                    <div class="description">Lifter</div>
-                    <div class="description">Do you even lift bro</div>
-                </div>
-                <div class="bottom">
-                    <a class="btn btn-primary btn-sm" rel="publisher" href="https://www.facebook.com/crystalcoachme/?hc_ref=SEARCH&fref=nf">
-                        <i class="fa fa-facebook"></i>
-                    </a>
-                    <a class="btn btn-success btn-sm" rel="publisher" href="https://tree.taiga.io/project/tehjawn-crystalcoach/">
-                        <i class="fa fa-arrows-alt"></i>
-                    </a>
-                    <a class="btn btn-info btn-sm" rel="publisher" href="https://github.com/tehjawn/CrystalCoach">
-                        <i class="fa fa-github"></i>
-                    </a>
-                </div>
+<div class="container" ng-controller="ProfileCtrl as profile">
+  <div class="row">
+    <div class="col-lg-3 col-sm-6">
+      <h5 style="display: inline">My Profile</h5> <span id="profile-edit-btn" class="profile-edit-btn" ng-click="editMode()"><i class="fa fa-pencil"></i> Edit</span>
+      <div class="row">
+        <div class="col-md-12">
+          <div class="card hovercard">
+            <div class="cardheader">
             </div>
-        </div>
-        <div class="col-lg-6 col-sm-6">
-            <div class="card hovercard">
-                PLACE HOLDER
+            <div class="avatar">
+              <img alt="" src="../assets/john.png">
             </div>
-        </div>
-        <div class="col-lg-3 col-sm-3">
-            <div class="card hovercard">
-                PLACE HOLDER
+            <div class="info">
+              <div class="title">
+                <a>{{user.meta.first_name}} {{user.meta.last_name}}</a>
+                <input class="profile-form form-control" type="text" ng-model="user.meta.first_name" placeholder="First Name" />
+                <input class="profile-form form-control" type="text" ng-model="user.meta.last_name" placeholder="Last Name" />
+              </div>
+              <div class="description">{{user.meta.description}}</div>
+                <input class="profile-form form-control" type="text" ng-model="user.meta.description" placeholder="Description" />
+              <div class="description">{{user.meta.quote}}</div>
+                <input class="profile-form form-control" type="text" ng-model="user.meta.quote" placeholder="Quote" />
             </div>
+            <div class="bottom">
+              <a style="color: #1c6e88" class="btn btn-sm" rel="publisher" href="https://www.facebook.com/crystalcoachme/?hc_ref=SEARCH&fref=nf">
+                <i class="fa fa-facebook"></i>
+              </a>
+              <a style="color: #1c6e88" class="btn btn-sm" rel="publisher" href="https://tree.taiga.io/project/tehjawn-crystalcoach/">
+                <i class="fa fa-compass"></i>
+              </a>
+              <a style="color: #1c6e88" class="btn btn-sm" rel="publisher" href="https://github.com/tehjawn/CrystalCoach">
+                <i class="fa fa-github"></i>
+              </a>
+            </div>
+          </div>
         </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12">
+          <div class="card hoverinfocard">
+            <div class="title">
+              <h5> About </h5>
+            </div>
+            <ul class="list-unstyled">
+              <br>
+              <li class="prof-spec-li"><i class="fa fa-globe"></i> &nbsp; {{user.meta.ethnicity}}</li>
+              <li class="prof-spec-li profile-form"><input class="form-control" type="text" ng-model="user.meta.ethnicity" placeholder="Ethnicity" /></li>
+              <br>
+              <li class="prof-spec-li"><i class="fa fa-clock-o"></i> &nbsp; {{user.meta.age}}</li>
+              <li class="prof-spec-li profile-form"><input class="form-control" type="text" ng-model="user.meta.age" placeholder="Age" /></li>
+              <br>
+              <li class="prof-spec-li"><i class="fa fa-user"></i> &nbsp; {{user.meta.height}}</li>
+              <li class="prof-spec-li profile-form"><input class="form-control" type="text" ng-model="user.meta.height" placeholder="Height" /></li>
+              <br>
+              <li class="prof-spec-li"><i class="fa fa-indent"></i> &nbsp; {{user.meta.weight}}</li>
+              <li class="prof-spec-li profile-form"><input class="form-control" type="text" ng-model="user.meta.weight" placeholder="Weight" /></li>
+              <br>
+              <li class="prof-spec-li"><i class="fa fa-heart"></i> &nbsp; {{user.meta.fave}}</li>
+              <li class="prof-spec-li profile-form"><input class="form-control" type="text" ng-model="user.meta.fave" placeholder="Fave" /></li>
+            </ul>
+          </div>
+        </div>
+      </div>
     </div>
-    <div class="row">
-        <div class="col-lg-3 col-sm-6">
-            <div class="card hoverinfocard">
-                <div class = "title">
-                    <a> LEARN MORE ABOUT ME! </a>
-                </div>
-                <ul>
-                    <li class="fa fa-hand-o-right">Hey! My name is John Doe</li><br>
-                    <li class="fa fa-hand-o-right">Born on 11/11/11</li><br>
-                    <li class="fa fa-hand-o-right">I am fat!</li><br>
-                    <li class="fa fa-hand-o-right">I am 5ft tall and weigh 200lbs</li><br>
-                    <li class="fa fa-hand-o-right">As you can see, I am OUT OF SHAPE</li><br>
-                </ul>
+    <div class="col-lg-6 col-sm-6">
+      <h5>Crystal Chat History</h5>
+      <div class="row">
+        <div class="col-md-12">
+          <div class="card hovercard" ng-repeat="message in user.crystal.messages | orderBy: '':true">
+            <div class="cardheader">
             </div>
+            <div class="avatar">
+              <img ng-src="../assets/{{message.user.avatar}}"/>
+            </div>
+            <div class="info">
+              <div class="description">
+                {{message.text}}
+              </div>
+            </div>
+          </div>
         </div>
+      </div>
     </div>
+    <div class="col-lg-3 col-sm-3">
+      <h5>Connected Accounts</h5>
+      <div class="row">
+        <div class="col-md-12">
+          <div class="card hovercard">
+            <br>
+            <i class="fa fa-google-plus"></i> &nbsp; 
+            <button class="btn btn-sm">Connect</button>
+            <hr>
+            <i class="fa fa-twitter"></i> &nbsp; 
+            <button class="btn btn-sm">Connect</button>
+            <hr>
+            <i class="fa fa-facebook"></i> &nbsp; &nbsp; 
+            <button class="btn btn-sm">Connect</button>
+            <br><br>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>

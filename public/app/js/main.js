@@ -1,4 +1,4 @@
-var crystalApp = angular.module('crystalApp', ['ngRoute'])
+var crystalApp = angular.module('crystalApp', ['ngRoute', 'firebase'])
 
 // ASK CHET ABOUT SERVICES IN ANGULAR <-- We will need to have Firebase User Information as a service
 
@@ -29,14 +29,11 @@ var crystalApp = angular.module('crystalApp', ['ngRoute'])
       controller: 'StatsCtrl',
       controllerAs: 'stats'
     })
-    .when('/error', {
-      template: '<h1>Error!</h1>'
-    })
     .otherwise({
       redirectTo: '/'
     })
 
-// TODO : Otherwise is currently NOT WORKING! Ask around about this.
+  // TODO : Otherwise is currently NOT WORKING! Ask around about this.
 
   $locationProvider.html5Mode(true)
 }])
@@ -47,6 +44,7 @@ crystalApp.controller('MainCtrl', ['$scope', '$http', '$route', '$routeParams', 
   this.$routeParams = $routeParams
 
   $scope.response = function(input) {
+    console.log("Saying '"+input+"'...")
     $scope.userSaid = input
     responsiveVoice.speak(input)
   }
@@ -68,8 +66,8 @@ crystalApp.controller('MainCtrl', ['$scope', '$http', '$route', '$routeParams', 
   $scope.listen = function() {
 
     var obj = document.createElement("audio");
-    obj.src="https://kahimyang.com/resources/sound/click.mp3";
-    obj.volume=1;  
+    obj.src = "https://kahimyang.com/resources/sound/click.mp3";
+    obj.volume = 1;
 
     obj.play();
 
@@ -95,14 +93,15 @@ crystalApp.controller('MainCtrl', ['$scope', '$http', '$route', '$routeParams', 
           final = final.concat(event.results[i][0].transcript);
           console.log(event.results[i][0].transcript);
 
-          $scope.response(final)
-          $scope.$apply();
+          // $scope.response(final)
+          var crystalRes = $scope.askCrystal(final, $scope.response)
+          
+          // $scope.$apply();
         } else {
           interim.push(event.results[i][0].transcript);
           console.log('interim ' + event.results[i][0].transcript);
           $(".mic-overlay").fadeOut();
           $("#speech").text(result);
-          $scope.rec.stop();
         }
       }
     }
@@ -158,6 +157,27 @@ crystalApp.controller('MainCtrl', ['$scope', '$http', '$route', '$routeParams', 
     error(function(data, status, headers, config) {
       // log error
       console.log("error!")
+    });
+  }
+
+  $scope.askCrystal = function(input, callback) {
+    console.log("Asking Crystal '" + input + "'...")
+    var settings = {
+      "async": true,
+      "crossDomain": true,
+      "url": "http://localhost:8000/crystal/listen",
+      "method": "POST",
+      "headers": {
+        "content-type": "application/json",
+        "cache-control": "no-cache",
+        "postman-token": "17e7252c-8e8a-2bf7-dd09-40088c042fe5"
+      },
+      "processData": false,
+      "data": "{\n    \"userInput\" : \""+input+"\"\n}"
+    }
+
+    $.ajax(settings).done(function(response) {
+      callback(response.message)
     });
   }
 }])

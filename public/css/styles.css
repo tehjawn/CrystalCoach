@@ -44,7 +44,7 @@ nav {
 
 .nav-body {
   height: 11vh;
-  background-color: rgba(150, 209, 229, 0.8);
+  background-color: rgba(28, 110, 136, .8);
   box-shadow: 0 0 15px -5px black;
 }
 
@@ -86,9 +86,53 @@ section {
 
 /* LANDING SECTION */
 
+/*
+.link--kukuri {
+  overflow: hidden;
+  line-height: 0.75;
+  color: #71c3cf;
+}
+
+.link--kukuri:hover {
+  color: #71c3cf;
+}
+
+.link--kukuri::after {
+  content: '';
+  position: absolute;
+  height: 16px;
+  width: 100%;
+  top: 50%;
+  margin-top: -8px;
+  right: 1px;
+  background: #0b4050;
+  transform: translate3d(-100%,0,0);
+  transition: transform 0.4s;
+  transition-timing-function: cubic-bezier(0.7,0,0.3,1);
+}
+
+.link--kukuri:hover::after {
+  transform: translate3d(110%,0,0);
+}
+
+.link--kukuri::before {
+  content: attr(data-letters);
+  position: absolute;
+  z-index: 2;
+  overflow: hidden;
+  color: #fff;
+  white-space: nowrap;
+  width: 0%;
+  transition: width 0.4s 0.3s;
+}
+
+.link--kukuri:hover::before {
+  width: 100%;
+}
+*/
 #landing {
-  min-height: 85vh;
-  background-color: #96d1e5;
+  min-height: 90vh;
+  background-color: #71c3cf;
   background-image: url(../assets/landing-blur-sm.jpg);
   background-size: cover;
   background-repeat: no-repeat;
@@ -106,11 +150,11 @@ section {
   /* For Firefox 3.6 to 15 */
   background: linear-gradient(to bottom, rgba(100, 220, 200, .8) 20%, rgba(20, 120, 150, .8) 100%);
   /* Standard syntax */
-  height: 85vh;
+  height: 90vh;
 }
 
 #landing .landing-text {
-  padding-top: 15vh;
+  padding-top: 5vh;
   padding-bottom: 5vh;
   color: white;
   z-index: 50;
@@ -142,7 +186,13 @@ section {
 }
 
 #landing h1 {
-  font-size: 3em;
+  font-size: 4em; 
+  outline: none;
+  text-decoration: none;
+  position: relative;
+  line-height: 1;
+  color: #fff;
+  display: inline-block;
 }
 
 .cc-app-showcase {
@@ -153,6 +203,15 @@ section {
   background-size: contain;
   background-repeat: no-repeat;
   transition: .5s;
+}
+
+.showcase-content {
+  cursor: pointer;
+}
+
+.showcase-content img {
+  width: 180px;
+  height: auto;
 }
 
 .showcase-overlay {
@@ -168,9 +227,8 @@ section {
 }
 
 #landing-cta-btn {
-  -vendor-animation-duration: 3s;
-  -vendor-animation-delay: 2s;
-  -vendor-animation-iteration-count: infinite;
+  -webkit-animation-duration: 7s;
+  -webkit-animation-delay: 2s;
 }
 
 .landing-cta-btn {
@@ -267,7 +325,7 @@ section {
 
 .btn-xl {
   width: 100%;
-  background-color: #96d1e5;
+  background-color: #71c3cf;
   box-shadow: 0 5px 25px -5px black;
   transition: .2s;
   color: white;
@@ -291,6 +349,7 @@ section {
 	}*/
 
 	.nav-logo {
+    margin-left: 0;
 		left: 50%;
 		position: absolute;
 		transform: translateX(-50%);
@@ -304,15 +363,24 @@ section {
 		display: none;
 	}
 
-  .showcase-content img {
-    width: 100px;
+  .landing-text {
+    margin-top: 60px;
   }
 
-  .showcase-content:before {
-  	position: absolute;
-  	left: 50%;
+  .landing-text img {
+    display: none;
+  }
+
+  .showcase-content img {
+    width: 200px;
+    margin-top: 5%;
+  }
+
+  .showcase-content:after {
+  	position: relative;
+    display: block;
+    left: 50%;
   	transform: translateX(-50%);
-  	top: 95px;
   	content:"Get Started";
   }
 
@@ -365,7 +433,7 @@ section {
 	}*/
 
   .showcase-content img {
-    width: 20%;
+    width: 400px;
     height: auto;
   }
 

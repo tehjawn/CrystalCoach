@@ -14,6 +14,7 @@
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css">
   <link rel="stylesheet" href="./css/styles.css" />
+  <link rel="stylesheet" href="./css/wave.css" />
   <link rel="stylesheet" type="text/css" href="./css/device.min.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js"></script>
@@ -32,12 +33,20 @@
     </ul>
   </nav>
   <section id="landing">
+    <div class="wave-container">
+      <div class="wave"></div>
+    </div>
+
     <div class="overlay landing-overlay">
       <div class="content">
         <div class="landing-text">
-          <h1>Meet <b>Crystal</b></h1>
+          <img src="./assets/logo-tsp.png" style="width:200px"/>
           <br>
-          <h4>The personalized fitness coach who adapts to you</h4>
+          <h1>CrystalCoach</h1>
+          <br>
+          <!-- <h1 class="link link--kukuri" href="#" data-letters="Meet Crystal">Meet <b>Crystal</b></h1> -->
+          <br>
+          <div class=""><h4>Your personal health coach</h4></div>
         </div>
         <div id="mac" class="device-container">
           <div class="device animated fadeInUp">
@@ -47,8 +56,8 @@
                   <div class="cc-app-showcase">
                     <div class="overlay showcase-overlay" onclick="window.location = './app'">
                     	<div class="showcase-content">
-                        <img src="./assets/logo-sm.png"" />
-	                      <button id="landing-cta-btn" class="btn landing-cta-btn animated jello">Get started today!</button>
+                        <img src="./assets/logo.png"" />
+	                      <button id="landing-cta-btn" class="btn landing-cta-btn animated infinite pulse">Get started today!</button>
 	                    </div>
                     </div>
                   </div>
@@ -86,24 +95,24 @@
       <hr>
       <div class="row">
         <div class="col-md-4 col-sm-4">
+          <h1><i class="fa fa-microphone"></i></h1><br>
+          <h3>Voice Assistant</h3><br>
+          <p class="text-center">
+            Perform actions and obtain information quickly and efficiently with just your voice, just like you would with Siri, Assistant or Alexa
+          </p>
+        </div>
+        <div class="col-md-4 col-sm-4">
   				<h1><i class="fa fa-book"></i></h1><br>
           <h3>Activity Recorder</h3><br>
           <p class="text-center">
-  					Lorem ipsum Deserunt fugiat Duis aliquip in ullamco Ut ad aute eiusmod in ut Ut sint aliquip.
+  					Record your workouts and meals - Crystal recognizes hundreds of different data points and uses machine learning to extrapolate data for ones she's never ever seen
           </p>
         </div>
         <div class="col-md-4 col-sm-4">
-  				<h1><i class="fa fa-microphone"></i></h1><br>
-          <h3>Voice Assistant</h3><br>
-          <p class="text-center">
-  					Lorem ipsum Deserunt fugiat Duis aliquip in ullamco Ut ad aute eiusmod in ut Ut sint aliquip.
-          </p>
-        </div>
-        <div class="col-md-4 col-sm-4">
-  				<h1><i class="fa fa-book"></i></h1><br>
+  				<h1><i class="fa fa-area-chart"></i></h1><br>
           <h3>Health Recommendations</h3><br>
           <p class="text-center">
-  					Lorem ipsum Deserunt fugiat Duis aliquip in ullamco Ut ad aute eiusmod in ut Ut sint aliquip.
+  					Receive the best fitted recommendations for exercises and dietary regimens for you
           </p>
         </div>
       </div>
