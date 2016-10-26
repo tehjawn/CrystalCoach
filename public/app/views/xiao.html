@@ -1,0 +1,29 @@
+<div ng-controller="MainCtrl as main">
+  <div class="chatTitle">
+    <center>
+      <h1>CHAT WITH CRYSTAL</h1>
+    </center>
+  </div>
+  <!-- Fun with the BackGround -->
+  <!-- <div class="wave"></div> -->
+  <!-- Speaking to Crytal -->
+  <center>
+    <img src="./img/mic.png" ng-click="speech()">
+    <h3>{{userSaid}}<h3>
+  </center>
+
+  <!-- Text to Speech -->
+  <div>
+   <form ng-submit="submit()">
+      <h3> Crystal Say This: <h3>
+      <input type="text" ng-model="text" name="text" />
+      <input type="submit" id="submit" value="SAY THIS RIGHT NOW" />
+      <h1>{{text}}</h1>
+    </form>
+  </div>
+
+  <div>
+    <button ng-click="iQuote()"> Inspire me Crystal!</button>
+    <h3> Quote of the Day: {{inspire.quote}}<h3>
+  </div>
+</h3>

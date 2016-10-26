@@ -1,59 +1,163 @@
-var crystalApp = angular.module('crystalApp', [])
+var crystalApp = angular.module('crystalApp', ['ngRoute'])
 
-crystalApp.controller('MainCtrl', ['$scope', '$http', function MainCtrl($scope, $http) {
-    $scope.response = function(input) {
-        $scope.userSaid = input
-        responsiveVoice.speak(input)
-    }
+// ASK CHET ABOUT SERVICES IN ANGULAR <-- We will need to have Firebase User Information as a service
 
-    $scope.speech = function() {
-        console.log("Starting speech recognition...")
-        var rec = new webkitSpeechRecognition();
-        var interim = [];
-        var final = '';
+.config(['$routeProvider', '$locationProvider', function($routeProvider, $locationProvider) {
+  $routeProvider
+    .when('/', {
+      templateUrl: './views/home.view.html',
+      controller: 'HomeCtrl',
+      controllerAs: 'home'
+    })
+    .when('/xiao', {
+      templateUrl: './views/xiao.html',
+      controller: 'MainCtrl',
+      controllerAs: 'main'
+    })
+    .when('/settings', {
+      templateUrl: './views/settings.view.html',
+      controller: 'SettingsCtrl',
+      controllerAs: 'settings'
+    })
+    .when('/profile', {
+      templateUrl: './views/profile.view.html',
+      controller: 'ProfileCtrl',
+      controllerAs: 'profile'
+    })
+    .when('/stats', {
+      templateUrl: './views/stats.view.html',
+      controller: 'StatsCtrl',
+      controllerAs: 'stats'
+    })
+    .when('/error', {
+      template: '<h1>Error!</h1>'
+    })
+    .otherwise({
+      redirectTo: '/'
+    })
 
-        rec.continuous = false;
-        rec.lang = 'en-US';
-        rec.interimResults = true;
-        rec.onerror = function(event) {
-            console.log('error!');
-        };
+// TODO : Otherwise is currently NOT WORKING! Ask around about this.
 
-        rec.start();
+  $locationProvider.html5Mode(true)
+}])
 
-        rec.onresult = function(event) {
-            for (var i = event.resultIndex; i < event.results.length; i++) {
-                if (event.results[i].isFinal) {
-                    final = final.concat(event.results[i][0].transcript);
-                    console.log(event.results[i][0].transcript);
-                    
-                    $scope.response(final)
-                    $scope.$apply();
-                } else {
-                    interim.push(event.results[i][0].transcript);
-                    console.log('interim ' + event.results[i][0].transcript);
-                    $scope.$apply();
-                }
-            }
+crystalApp.controller('MainCtrl', ['$scope', '$http', '$route', '$routeParams', '$location', function MainCtrl($scope, $http, $route, $routeParams, $location) {
+  this.$route = $route
+  this.$location = $location
+  this.$routeParams = $routeParams
+
+  $scope.response = function(input) {
+    $scope.userSaid = input
+    responsiveVoice.speak(input)
+  }
+
+  $scope.goTo = function(loc) {
+    $location.url(loc)
+    $('#menu-open').attr('checked', false);
+  }
+
+  $scope.rec
+
+  $scope.stopListening = function() {
+    console.log("Stop listen")
+    $scope.rec.stop();
+    $(".mic-overlay").fadeOut();
+    $('#menu-open').attr('checked', false);
+  }
+
+  $scope.listen = function() {
+
+    var obj = document.createElement("audio");
+    obj.src="https://kahimyang.com/resources/sound/click.mp3";
+    obj.volume=1;  
+
+    obj.play();
+
+    $(".mic-overlay").fadeIn();
+    var result;
+    $scope.rec = new webkitSpeechRecognition();
+    var interim = [];
+    var final = '';
+
+    $scope.rec.continuous = false;
+    $scope.rec.lang = 'en-US';
+    $scope.rec.interimResults = true;
+
+    $scope.rec.onerror = function(event) {
+      console.log('error!');
+    };
+
+    $scope.rec.start();
+
+    $scope.rec.onresult = function(event) {
+      for (var i = event.resultIndex; i < event.results.length; i++) {
+        if (event.results[i].isFinal) {
+          final = final.concat(event.results[i][0].transcript);
+          console.log(event.results[i][0].transcript);
+
+          $scope.response(final)
+          $scope.$apply();
+        } else {
+          interim.push(event.results[i][0].transcript);
+          console.log('interim ' + event.results[i][0].transcript);
+          $(".mic-overlay").fadeOut();
+          $("#speech").text(result);
+          $scope.rec.stop();
         }
+      }
     }
+  }
 
-    $scope.text = 'CRYSTAL WILL SAY WHATEVER YOU WANT';
-    $scope.submit = function() {
-        if ($scope.text) {
-            $scope.response(this.text)
-            $scope.text = '';
+  $scope.speech = function() {
+    console.log("Starting speech recognition...")
+    var rec = new webkitSpeechRecognition();
+    var interim = [];
+    var final = '';
+
+    rec.continuous = false;
+    rec.lang = 'en-US';
+    rec.interimResults = true;
+    rec.onerror = function(event) {
+      console.log('error!');
+    };
+
+    rec.start();
+
+    rec.onresult = function(event) {
+      for (var i = event.resultIndex; i < event.results.length; i++) {
+        if (event.results[i].isFinal) {
+          final = final.concat(event.results[i][0].transcript);
+          console.log(event.results[i][0].transcript);
+
+          $scope.response(final)
+          $scope.$apply();
+        } else {
+          interim.push(event.results[i][0].transcript);
+          console.log('interim ' + event.results[i][0].transcript);
+          $scope.$apply();
         }
+      }
     }
+  }
 
-    $scope.iQuote = function() {
-    	$http.get('./json/test.json').
+  $scope.text = 'CRYSTAL WILL SAY WHATEVER YOU WANT';
+  $scope.submit = function() {
+    if ($scope.text) {
+      $scope.response(this.text)
+      $scope.text = '';
+    }
+  }
+
+  $scope.iQuote = function() {
+    $http.get('./json/quotes.json').
     success(function(data, status, headers, config) {
-      $scope.inspire = data;
-      $scope.response(data.quote + " Quoted by " +data.name)
+      console.log(data)
+      $scope.inspire = data.quotes[Math.floor(Math.random() * 101)];
+      $scope.response($scope.inspire[0] + " Quoted by " + $scope.inspire[1])
     }).
     error(function(data, status, headers, config) {
       // log error
+      console.log("error!")
     });
-    }
+  }
 }])
