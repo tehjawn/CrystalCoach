@@ -94,13 +94,14 @@ crystalApp.controller('MainCtrl', ['$scope', '$http', '$route', '$routeParams', 
           console.log(event.results[i][0].transcript);
 
           // $scope.response(final)
+          $("canvas").fadeOut();
+          $(".mic-loading").fadeIn();
           var crystalRes = $scope.askCrystal(final, $scope.response)
           
           // $scope.$apply();
         } else {
           interim.push(event.results[i][0].transcript);
           console.log('interim ' + event.results[i][0].transcript);
-          $(".mic-overlay").fadeOut();
           $("#speech").text(result);
         }
       }
@@ -178,6 +179,9 @@ crystalApp.controller('MainCtrl', ['$scope', '$http', '$route', '$routeParams', 
 
     $.ajax(settings).done(function(response) {
       callback(response.message)
+      $("canvas").fadeIn();
+      $(".mic-loading").fadeOut();
+      $(".mic-overlay").fadeOut();
     });
   }
 }])

@@ -1,27 +1,33 @@
 // Crystal Response Builder
-module.exports.buildResponse = function(intent, params) {
+module.exports.buildResponse = function(intent, params, callback) {
 
 	console.log("Building a " + intent + " response using parameters " + JSON.stringify(params))
 
 	if(intent == "Record Activity - Drink") {
 		var drink = require('./drink')
-		return drink.calculate({}, {
+		callback(drink.calculate({}, {
 			drink: params.drink || "lemonade"
-		})
-	} else if (intent == "Record Activity - Food") {
+		}))
+	}
+
+	else if (intent == "Record Activity - Food") {
 		var food = require('./food')
-		return food.calculate({}, {
-			food: params.food || "banana"
-		}, function(resp){
+		console.log("Intent scanned: "+intent)
+		console.log("Intent params: "+JSON.stringify(params))
+
+		// Calculate a food response using User, Food, and Response Callback
+		food.calculate({}, params.food || "banana", function(resp){
 			console.log(resp)
-			return resp
+			callback(resp)
 		})
-	} else if (intent == "Record Activity - General Exercises") {
+	}
+
+	else if (intent == "Record Activity - General Exercises") {
 		var exercise = require('./exercise')
-		return exercise.calculate({}, {
+		callback(exercise.calculate({}, {
 			exercise: params.exercise || "pushups"
-		})
+		}))
 	} else {
-		return "Error - intent not found!"
+		callback("Error - intent not found!")
 	}
 }

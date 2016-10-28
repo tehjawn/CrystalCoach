@@ -67,14 +67,14 @@ function runServer(config) {
 	singletonServer(server_config)
 
 	// Watches public folder and restarts Express server on change
-	console.log("Watching ~/public/**...")
-	autoReload()
+	// autoReload()
 }
 
 // autoReload()
 // Observe public folder and refire singleton Server upon seeing a change
 function autoReload() {
-	gulp.watch(['public/**/*'], function() {
+	console.log("Watching ~/**")
+	gulp.watch(['./**/*'], function() {
 		singletonServer(server_config)
 		console.log("Detected change! Reloading server...")
 	})

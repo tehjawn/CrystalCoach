@@ -9,13 +9,17 @@ module.exports = (req, res) => {
 	var response
 
 	// Expect req to be a JSON object
-	console.log(req.body)
+	console.log(req.body) // { userInput: 'I ate a banana' }
+
+	// Make a request to API.AI with the userInput
 	var request = app.textRequest(req.body.userInput)
 	
+	// After receiving a response from API.AI, build a response and return it to the original caller (the user)
 	request.on('response', function(resp) {
-		response = crystal.buildResponse(resp.result.metadata.intentName, resp.result.parameters)
-		res.json({
-			message: response
+		crystal.buildResponse(resp.result.metadata.intentName, resp.result.parameters, function(crystal_response){
+			res.json({
+				message: crystal_response
+			})
 		})
 	})
 
