@@ -1,3 +1,5 @@
+# Deprecated! Please visit [CrystalCoach2](https://github.com/tehjawn/CrystalCoach2) for the updated version!
+
 ![logo-sm](https://github.com/tehjawn/CrystalCoach/blob/master/public/assets/logo-sm.png)
 CrystalCoach
 ============
